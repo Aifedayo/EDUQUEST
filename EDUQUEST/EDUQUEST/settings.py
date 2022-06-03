@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -45,6 +50,7 @@ INSTALLED_APPS = [
     'djoser',
 
     'users',
+    'eduquestapi',
 
 ]
 
@@ -63,7 +69,7 @@ ROOT_URLCONF = 'EDUQUEST.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,8 +90,12 @@ WSGI_APPLICATION = 'EDUQUEST.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': env('POSTGRES_DB'),
+        'USER': os.environ['POSTGRES_USER'],
+        'PASSWORD': os.environ['POSTGRES_PASSWORD'],
+        'HOST': '127.0.0.1',
+        'PORT': '5433'
     }
 }
 
