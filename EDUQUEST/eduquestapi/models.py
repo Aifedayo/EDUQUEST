@@ -14,6 +14,13 @@ class Category(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, 
                                     related_name='categories')
 
+    class Meta:
+        ordering = ('name',)
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
+
+    def __str__(self):
+        return self.name
 class Question(TimeStampedModel):
     category = models.ForeignKey(Category, related_name='questions',
                                          on_delete=models.CASCADE)
@@ -39,7 +46,7 @@ class Answer(TimeStampedModel):
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, 
                                     related_name='answers')
-    voters = models.ManyToManyField(
+    upvoters = models.ManyToManyField(
                     settings.AUTH_USER_MODEL, related_name='likes')
 
     def __str__(self):
@@ -49,6 +56,10 @@ class Answer(TimeStampedModel):
 class AnswerComment(TimeStampedModel):
     answer = models.ForeignKey(Answer, on_delete=models.CASCADE, 
                                 related_name='answer')
+    commenter = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, 
+                                    related_name='comments'
+    )
     comment = models.TextField()
 
     def __str__(self):
