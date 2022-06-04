@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from questions.api import views as qv
+from api.views import views as qv
 
 router = DefaultRouter()
 router.register(r"categories", qv.CategoryViewSet)
