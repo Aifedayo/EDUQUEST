@@ -15,8 +15,8 @@ def add_slug_to_category(sender, instance, *args, **kwargs):
 
 
 @receiver(pre_save, sender=Question)
-def add_slug_to_category(sender, instance, *args, **kwargs):
+def add_slug_to_question(sender, instance, *args, **kwargs):
     if instance and not instance.slug:
-        slug = slugify(instance.name)
+        slug = slugify(instance.title)
         random_string = get_random_string(length=8)
         instance.slug = slug + '-' + random_string

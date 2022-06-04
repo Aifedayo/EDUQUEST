@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from api.views import views as qv
+from . import views as qv
 
 router = DefaultRouter()
 router.register(r"categories", qv.CategoryViewSet)
@@ -25,12 +25,12 @@ urlpatterns = [
         name='question-detail'),
 
     path(
-        'questions/<slug:slug>/answer/', 
+        'question/<slug:slug>/answer/', 
         qv.AnswerCreateAPIView.as_view(),
         name='create-answer'),
 
     path(
-        'questions/<slug:slug>/answers/', 
+        'question/<slug:slug>/answers/', 
         qv.AnswerListAPIView.as_view(),
         name='list-answers'),
 

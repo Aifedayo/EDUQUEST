@@ -68,7 +68,8 @@ class AnswerSerializer(serializers.ModelSerializer):
 
 
 class AnswerCommentSerializer(serializers.ModelSerializer):
-    author = serializers.StringRelatedField()
+    commenter = serializers.StringRelatedField()
+    answer = serializers.StringRelatedField()
     class Meta:
         model = AnswerComment
-        fields = ['id', 'updated_at']
+        exclude = ['id', 'updated_at']

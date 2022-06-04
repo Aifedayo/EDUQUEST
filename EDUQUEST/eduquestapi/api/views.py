@@ -40,7 +40,7 @@ class QuestionCreateAPIView(generics.CreateAPIView):
         serializer.save(author=request_user, category=category)
 
 
-class QuestionListView(generics.ListAPIView):
+class QuestionListAPIView(generics.ListAPIView):
     serializer_class = QuestionSerializer
     permission_classes = [IsAuthenticated, IsAuthorOrReadOnly]
 
@@ -114,12 +114,14 @@ class AnswerLikeAPIView(APIView):
 
 class AnswerCommentListCreateAPIView(generics.ListCreateAPIView):
     queryset = AnswerComment.objects.all().order_by('id')
-    serializer_class = AnswerComment
+    serializer_class = AnswerCommentSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         kwarg_slug = self.kwargs.get("uuid")
-        return AnswerComment.objects.filter(answer__uuid=kwarg_slug)
+        answer_comment = AnswerComment.objects.filter(answer__uuid=kwarg_slug)
+        print(answer_comment)
+        return answer_comment
 
     def perform_create(self, serializer):
         request_user = self.request.user

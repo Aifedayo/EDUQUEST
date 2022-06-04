@@ -50,7 +50,7 @@ class Answer(TimeStampedModel):
                     settings.AUTH_USER_MODEL, related_name='likes')
 
     def __str__(self):
-        return self.author.username
+        return self.body[:15]
 
 
 class AnswerComment(TimeStampedModel):
@@ -61,9 +61,6 @@ class AnswerComment(TimeStampedModel):
                                     related_name='comments'
     )
     comment = models.TextField()
-
-    class Meta:
-        ordering = ('created',)
 
     def __str__(self):
         return self.comment[:25]
