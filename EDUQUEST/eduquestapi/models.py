@@ -62,5 +62,8 @@ class AnswerComment(TimeStampedModel):
     )
     comment = models.TextField()
 
+    class Meta:
+        ordering = ('created',)
+
     def __str__(self):
         return self.comment[:25]
