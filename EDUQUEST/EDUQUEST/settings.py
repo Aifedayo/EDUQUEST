@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 
     'django_registration',
     'djoser',
+    'widget_tweaks',
 
     'users',
     'eduquestapi',
@@ -143,11 +144,17 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 # PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
 #STATIC_ROOT  =   os.path.join(PROJECT_ROOT, 'staticfiles')
 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+
+STATICFILES_DIRS = [
+    BASE_DIR, "static"
+]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = "uploads"
+
 # Extra lookup directories for collectstatic to find static files
 # STATICFILES_DIRS = (
 #     os.path.join(PROJECT_ROOT, 'static'),

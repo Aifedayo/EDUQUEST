@@ -1,29 +1,77 @@
-<!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="http://127.0.0.1:8080/favicon.ico">
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&display=swap"
-      rel="stylesheet"
-    />
-    <title>QueAns</title>
-  <script defer src="http://127.0.0.1:8080/js/chunk-vendors.js"></script><script defer src="http://127.0.0.1:8080/js/index.js"></script></head>
-  <body>
-    <noscript>
-      <strong>We're sorry but QueAns doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
-</html>
+{% extends "auth_layout.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+<h3 class="text-light mt-3 mb-4">Create Your QuestionTime Account!</h3>
+<div class="form-container">
+  <form method="POST">
+    {% csrf_token %}
+
+    <!-- https://getbootstrap.com/docs/5.1/forms/floating-labels/#example -->
+    <!-- https://github.com/jazzband/django-widget-tweaks -->
+    
+    <div class="form-floating mb-3">
+      {% render_field form.username class="form-control" id="floatingUsername" placeholder="Username" %}
+      <label for="floatingUsername">Username</label>
+      {% if form.username.errors %}
+        <div class="text-danger mt-2">
+          {% for error in form.username.errors %}
+            {{ error }}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="form-floating mb-3">
+      {% render_field form.email class="form-control" id="floatingEmail" placeholder="Email address" %}
+      <label for="floatingEmail">Email address</label>
+      {% if form.email.errors %}
+        <div class="text-danger mt-2">
+          {% for error in form.email.errors %}
+            {{ error }}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="form-floating mb-3">
+      {% render_field form.password1 class="form-control" id="floatingPassword1" placeholder="Choose a password" %}
+      <label for="floatingPassword1">Choose a password</label>
+      {% if form.password1.errors %}
+        <div class="text-danger mt-2">
+          {% for error in form.password2.errors %}
+            {{ error }}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="form-floating mb-3">
+      {% render_field form.password2 class="form-control" id="floatingPassword2" placeholder="Repeat your password" %}
+      <label for="floatingPassword2">Repeat your password</label>
+      {% if form.password2.errors %}
+        <div class="text-danger my-2">
+          {% for error in form.password2.errors %}
+            {{ error }}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+      
+    {% if form.errors %}
+      <div class="text-danger my-2">
+        {% for error in form.non_field_errors %}
+            {{ error }}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="d-grid gap-2">
+      <button type="submit" class="btn btn-lg btn-primary">Create Account</button>
+    </div>
+  </form>
+  <p class="text-light mt-4">
+    Or <a href="/accounts/login/" class="auth-link">Login</a>
+  </p>
+</div>
+{% endblock %}

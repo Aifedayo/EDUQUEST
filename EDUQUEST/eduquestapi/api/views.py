@@ -21,8 +21,8 @@ class CategoryViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         request_user = self.request.user
         kwarg_slug = self.kwargs.get('name')
-        category = Category.objects.all()
-        if category.name.exists():
+        print(kwarg_slug)
+        if Category.objects.filter(name=kwarg_slug).exists():
             raise ValidationError("Category Name already exists")
         serializer.save(author=request_user)
 
