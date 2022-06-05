@@ -63,6 +63,8 @@ class AnswerComment(TimeStampedModel):
                                     related_name='comments'
     )
     comment = models.TextField()
+    upvoters = models.ManyToManyField(
+                    settings.AUTH_USER_MODEL, related_name='likes_comment')
 
     def __str__(self):
         return self.comment[:25]
