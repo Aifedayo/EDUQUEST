@@ -45,18 +45,24 @@ class QuestionSerializer(serializers.ModelSerializer):
 class AnswerCommentSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField()
     answer = serializers.StringRelatedField()
-    upvotes_count = serializers.SerializerMethodField()
+    created_at = serializers.SerializerMethodField()
     user_has_upvoted = serializers.SerializerMethodField()
     class Meta:
         model = AnswerComment
-        exclude = ['id', 'updated_at']
+        exclude = ['id', 'updated_at', 'upvoters']
 
-    def get_upvotes_count(self, instance):
-        return instance.upvoters.count()
+    def get_created_at(self, instance):
+        return instance.created_at.strftime("%B %d, %Y")
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['likes'] = instance.upvoters.count()
+
+        return representation
 
     def get_user_has_upvoted(self, instance):
         request = self.context.get('request')
-        return instance.upvoters.filter(pk=request.user.pk)
+        return instance.upvoters.filter(pk=request.user.pk).exists()
 
 
 class AnswerSerializer(serializers.ModelSerializer):
@@ -65,7 +71,7 @@ class AnswerSerializer(serializers.ModelSerializer):
     likes_count = serializers.SerializerMethodField()
     user_has_liked_answer = serializers.SerializerMethodField()
     question_slug = serializers.SerializerMethodField()
-    answer_comments = AnswerCommentSerializer(many=True)
+    answer_comments = AnswerCommentSerializer(many=True, read_only=True)
 
     class Meta:
         model = Answer
