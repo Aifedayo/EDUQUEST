@@ -45,9 +45,18 @@ class QuestionSerializer(serializers.ModelSerializer):
 class AnswerCommentSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField()
     answer = serializers.StringRelatedField()
+    upvotes_count = serializers.SerializerMethodField()
+    user_has_upvoted = serializers.SerializerMethodField()
     class Meta:
         model = AnswerComment
         exclude = ['id', 'updated_at']
+
+    def get_upvotes_count(self, instance):
+        return instance.upvotes.count()
+
+    def get_user_has_upvoted(self, instance):
+        request = self.context.get('request')
+        return instance.upvoter.filter(pk=request.user.pk)
 
 
 class AnswerSerializer(serializers.ModelSerializer):
