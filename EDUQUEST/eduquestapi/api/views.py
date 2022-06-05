@@ -135,3 +135,28 @@ class AnswerCommentRUDAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AnswerCommentSerializer
     permission_classes = [IsAuthenticated, IsAuthorOrReadOnly]
     lookup_field = 'uuid'
+
+
+class AnswerCommentLikeAPIView(APIView):
+    serializer_class = AnswerCommentSerializer
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, uuid):
+        comment = get_object_or_404(AnswerComment, uuid=uuid)
+        comment.upvoters.add(request.user)
+        comment.save()
+
+        serializer_context = {"request": request}
+        serializer = self.serializer_class(comment, context=serializer_context)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def delete(self, request, uuid):
+        comment = get_object_or_404(AnswerComment, uuid=uuid)
+        comment.upvoters.remove(request.user)
+        comment.save()
+
+        serializer_context = {"request": request}
+        serializer = self.serializer_class(comment, context=serializer_context)
+
+        return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
