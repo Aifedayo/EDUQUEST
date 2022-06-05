@@ -9,7 +9,7 @@ from .models import (Category, Question, Answer, AnswerComment)
 @receiver(pre_save, sender=Category)
 def add_slug_to_category(sender, instance, *args, **kwargs):
     if instance and not instance.slug:
-        slug = slugify(instance.content)
+        slug = slugify(instance.name)
         random_string = get_random_string(length=4)
         instance.slug = slug + '-' + random_string
 

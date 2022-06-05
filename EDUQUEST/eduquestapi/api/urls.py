@@ -45,7 +45,7 @@ urlpatterns = [
         name='answer-like'),
 
     path(
-        'answers/<uuid:uuid>/comment/',
+        'answers/<uuid:uuid>/comments/',
         qv.AnswerCommentListCreateAPIView.as_view(),
-        name='answer-comment'),
+        name='answer-comments'),
 ]

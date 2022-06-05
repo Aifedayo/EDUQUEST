@@ -128,3 +128,10 @@ class AnswerCommentListCreateAPIView(generics.ListCreateAPIView):
         kwarg_uuid = self.kwargs.get('uuid')
         answer = get_object_or_404(Answer, uuid = kwarg_uuid)
         serializer.save(commenter=request_user, answer=answer)
+
+
+class AnswerCommentRUDAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = AnswerComment.objects.all()
+    serializer_class = AnswerComment
+    permission_classes = [IsAuthenticated, IsAuthorOrReadOnly]
+    lookup_field = ['answer__pk']
