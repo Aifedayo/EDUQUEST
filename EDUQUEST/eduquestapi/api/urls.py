@@ -53,4 +53,9 @@ urlpatterns = [
         'comment/<uuid:uuid>/',
         qv.AnswerCommentRUDAPIView.as_view(),
         name='answer-detail'),
+    
+    path(
+        'comment/<uuid:uuid>/like/',
+        qv.AnswerCommentLikeAPIView.as_view(),
+        name='comment-like'),
 ]
