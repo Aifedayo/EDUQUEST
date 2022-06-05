@@ -42,12 +42,21 @@ class QuestionSerializer(serializers.ModelSerializer):
         return instance.answers.filter(author=request.user).exists()
 
 
+class AnswerCommentSerializer(serializers.ModelSerializer):
+    author = serializers.StringRelatedField()
+    answer = serializers.StringRelatedField()
+    class Meta:
+        model = AnswerComment
+        exclude = ['id', 'updated_at']
+
+
 class AnswerSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField()
     created_at = serializers.SerializerMethodField()
     likes_count = serializers.SerializerMethodField()
     user_has_liked_answer = serializers.SerializerMethodField()
     question_slug = serializers.SerializerMethodField()
+    answer_comments = AnswerCommentSerializer(many=True)
 
     class Meta:
         model = Answer
@@ -65,11 +74,3 @@ class AnswerSerializer(serializers.ModelSerializer):
 
     def get_question_slug(self, instance):
         return instance.question.slug
-
-
-class AnswerCommentSerializer(serializers.ModelSerializer):
-    commenter = serializers.StringRelatedField()
-    answer = serializers.StringRelatedField()
-    class Meta:
-        model = AnswerComment
-        exclude = ['id', 'updated_at']

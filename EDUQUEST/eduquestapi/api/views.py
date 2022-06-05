@@ -132,6 +132,6 @@ class AnswerCommentListCreateAPIView(generics.ListCreateAPIView):
 
 class AnswerCommentRUDAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = AnswerComment.objects.all()
-    serializer_class = AnswerComment
+    serializer_class = AnswerCommentSerializer
     permission_classes = [IsAuthenticated, IsAuthorOrReadOnly]
-    lookup_field = ['answer__pk']
+    lookup_field = 'uuid'

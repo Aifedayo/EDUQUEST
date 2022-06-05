@@ -54,9 +54,11 @@ class Answer(TimeStampedModel):
 
 
 class AnswerComment(TimeStampedModel):
+    uuid = models.UUIDField(db_index=True, default=uuid_lib.uuid4, 
+                                editable=False)
     answer = models.ForeignKey(Answer, on_delete=models.CASCADE, 
-                                related_name='answer')
-    commenter = models.ForeignKey(
+                                related_name='answer_comments')
+    author = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, 
                                     related_name='comments'
     )
