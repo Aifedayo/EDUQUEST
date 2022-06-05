@@ -30,7 +30,7 @@ SECRET_KEY = ')7-4omy4tvkjkhs6)1vlo-j6n*0n#56b%rgd%u3y^5dhfmx4v%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['eduquestapi.herokuapp.com']
 
 
 # Application definition
