@@ -1,351 +1,454 @@
 <template>
-  <div class="home m-5">
-    
-    <!-- testing template here -->
-    <div class="row row-cols-4 g-4">
-      <div v-for="category in categories"
-                :key="category.pk"
-      >
-        <div class="wrapper">
-          <div class="cols">
-              <div class="col" ontouchstart="this.classList.toggle('hover');">
-                  <div v-if="category.count > 0">
-                    <router-link :to="{ name: 'question-list', params: {slug: category.slug} }"
-                        class="question-link"
-                      >
-                        <div class="container">
-                          <div class="front">
-                            <div class="badge-count">{{ category.count }}</div>
-                            
-                            <div class="inner">
-                              <p>{{ category.name }}</p>
-                              <span> author: {{ category.author }}</span>
-                            </div>
-                          </div>
-                          <div class="back">
-                            <div class="inner">
-                              <p>{{ category.context }}</p>
-                            </div>
-                          </div>
-                        </div>
-                    </router-link>
-                  </div>
-                  <div v-else>
-                    <router-link :to="{ name: 'question-editor', params: {slug: category.slug} }"
-                        class="question-list"
-                      >
-
-                      <div class="container">
-                          <div class="front">
-                            <div class="badge-count">{{ category.count }}</div>
-                            
-                            <div class="inner">
-                              <p>{{ category.name }}</p>
-                              <span> author: {{ category.author }}</span>
-                            </div>
-                          </div>
-                          <div class="back">
-                            <div class="inner">
-                              <p>{{ category.context }}</p>
-                            </div>
-                          </div>
-                        </div>
-                    </router-link>
-                  </div>
-              </div>
+<div class="container">
+  <div class="header">
+    <div class="hero">
+      <div class="hero-text">
+        <h1 class="hero-text__main">Never Stop Your <span class="nav-logo__quest">Quest</span> For Knowledge</h1>
+        <p class="hero-text__subs"></p>
+        <p class="hero-text__subs">This is an enclave to learn and to ask;
+            To benefit and to be benefitted; To gain and be of help to people within
+            or outside.
+        </p>
+        <p class="hero-text__subs">
+          In a time of turbulence and change, it is more true than ever that <span class="nav-logo__quest">knowledge</span> is power.
+          <span class="hero-text__quote"> - John F. Kennedy </span>
+        </p>
+        <div class="hero-text__div">
+          <a class="hero-text__btn" href="categories">Come On In</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img class="hero-image__main" src="https://bit.ly/2pzDwgc" alt="Images">
+      </div>
+    </div>
+  </div>
+  <main class="main">
+    <section class="about">
+      <div class="container">
+        <div class="about-image">
+          <img class="about-image__main" src="https://bit.ly/2D7MxjT" alt="Images">
+        </div>
+        <div class="about-text">
+          <h1 class="about-text__main">Knowledge is power. Knowledge shared is power multiplied..</h1>
+          <p class="about-text__subs">
+              Knowledge is power. Information is liberating. 
+              Education is the premise of progress, in every society, in every family.
+            </p>
+            <p class="about-text__subs">The beautiful thing about learning is nobody can take it away from you.
+            The man who asks a question is a fool for a minute, the man who does not 
+            ask is a fool for life.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="service">
+      <div class="container">
+        <div class="card card-1">
+          <div class="card-image">
+            <img src="https://bit.ly/37hmX9N" alt="Images">
+          </div>
+          <div class="card-text">
+            <h2 class="card-text__title">ANYWHERE IN THE WORLD</h2>
+            <p class="card-text__subs">The best thing a human being can do is 
+                to help another human being know more.
+            </p>
+          </div>
+        </div>
+        <div class="card card-2">
+          <div class="card-image">
+            <img src="https://bit.ly/2Xx6MAH" alt="Images">
+          </div>
+          <div class="card-text">
+            <h2 class="card-text__title">SHARE YOUR KNOWLEDGE</h2>
+            <p class="card-text__subs">If you have knowledge, let others light their candles in it.
+              For shared knowledge is a beneficial one.
+            </p>
+          </div>
+        </div>
+        <div class="card card-3">
+          <div class="card-image">
+            <img src="https://bit.ly/2O0Ftf9" alt="Images">
+          </div>
+          <div class="card-text">
+            <h2 class="card-text__title">DEBATE ETHICALLY</h2>
+            <p class="card-text__subs">Knowledge when put to use - 
+                only when the use made of it is constructive.
+            </p>
           </div>
         </div>
       </div>
-      <router-link
-        :to="{ name: 'category-editor' }"
-      >
-        <div class="wrapper">
-          <div class="cols">
-              <div class="col" ontouchstart="this.classList.toggle('hover');">
-                <div class="container">
-                  <div class="front">
-                    <div class="inner">
-                      <p style="font-size: 4em"> + </p>
-                      <span> Add category</span>
-                    </div>
-                  </div>
-                  <div class="back" style="background: #160606;">
-                    <div class="inner">
-                      <p style="font-size: 2em">+</p>
-                      <p>Add a new category that you can't find on the list</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div>
+    </section>
+    <section class="contact">
+      <div class="container">
+        <div class="contact-image">
+          <img src="https://bit.ly/32Y3o34" alt="Images">
         </div>
-      </router-link>
-    </div>
-    <div class="slide">
-        <p v-show="loadingCategories">...loading...</p>
-        <button v-show="next" @click="getQuestions"
-              class="slide"
-        >
-          <h4>Load more questions</h4>
-        </button>
-    </div>
-  </div>
+        <div class="contact-form">
+          <h2 class="contact-title">Contact Us Now.</h2>
+          <form class="form">
+            <div class="form-group group-1">
+              <input type="text" name="name" class="form-input" placeholder="Input Your Name">
+            </div>
+            <div class="form-group group-2">
+              <input type="text" name="email" class="form-input" placeholder="Input Your Email">
+            </div>
+            <div class="form-group group-3">
+              <textarea name="message" rows="5" class="form-textarea" placeholder="Input Your Messages"></textarea>
+            </div>
+            <div class="form-group group-4">
+              <input type="submit" class="form-submit" value="Submit">
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
 </template>
 
 <script>
-// @ is an alias to /src
-import { axios } from "@/common/api.service.js";
 export default {
   name: "HomeView",
-
-  data() {
-    return {
-      categories: [],
-      next: null,
-      loadingCategories: false,
-    }
-  },
-
-  created() {
-    this.getQuestions();
-  },
-
-  methods: {
-    async getQuestions() {
-      let endpoint = '/api/v1/categories/';
-      if (this.next) {
-        endpoint = this.next;
-      }
-      this.loadingCategories = true;
-      try {
-        const response = await axios.get(endpoint);
-        console.log(response);
-        this.categories.push(...response.data.results);
-        this.loadingCategories = false;
-        if (response.data.next){
-          this.next = response.data.next;
-        } else {
-          this.next = null;
-        }
-      } catch (error) {
-        console.error(error.response);
-        alert(error.response.statusText);
-      }
-    }
-  }
 }
 </script>
 
 <style scoped>
-
-  *{
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap');
+      * {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
 }
-
-h1{
+body {
+  font-family: 'Work Sans', sans-serif;
   font-size: 1rem;
-  font-family: 'Montserrat';
   font-weight: normal;
-  color: #444;
-  text-align: center;
-  margin: 2rem 0;
+  line-height: 1.4;
+  background: #ffffff;
+  color: #333333;
 }
 
-.wrapper{
+.container {
+  padding: 0 1rem;
   margin: 0 auto;
   max-width: 80rem;
+  width: 100%;
 }
-
-.cols{
-  display: -webkit-box;
-  display: -ms-flexbox;
+.header .nav-menu__item {
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-direction: row;
+  flex: 1;
+  flex-basis: auto;
 }
-
-.col{
-  width: calc(25% - 2rem);
-  margin: 1rem;
-  cursor: pointer;
+.header .nav-menu__link {
+  margin: 0 2rem 0 0;
+  font-family: 'Quicksand', sans-serif;;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #333333;
+  text-decoration: none;
 }
-
-.container{
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-	-webkit-perspective: 1000px;
-	perspective: 1000px;
+.header .nav-menu__link:hover {
+  color: #6334ba;
 }
-
-.front,
-.back{
-  background-size: cover;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.25);
-  border-radius: 10px;
-	background-position: center;
-	-webkit-transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
-	transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
-	-o-transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
-	transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
-	transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1), 
-  -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
-	text-align: center;
-	min-height: 280px;
-	height: auto;
-	border-radius: 10px;
-	color: #fff;
-	font-size: 1rem;
+.header .hero {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
-
-.back{
-  background: #28577b;
-  background: -webkit-linear-gradient(45deg,  #cedce7 0%,#cc2b5e 100%);
-  background: -o-linear-gradient(45deg,  #cedce7 0%,#cc2b5e 100%);
-  background: linear-gradient(to bottom right, #250909, #080513);
+.header .hero-text__main {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 3em;
+  font-weight: 800;
+  line-height: 1em;
+  text-transform: uppercase;
+  color: rgb(59, 59, 59);
 }
-
-.front:after{
-	position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    content: '';
-    display: block;
-    background-image: linear-gradient(to bottom right, #1c2726, #10100f);
-    -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-    border-radius: 10px;
-}
-.container:hover .front,
-.container:hover .back{
-    -webkit-transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
-    transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
-    -o-transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
-    transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
-    transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1), 
-    -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
-}
-
-.back{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-}
-
-.inner{
-    -webkit-transform: translateY(-50%) translateZ(60px) scale(0.94);
-            transform: translateY(-50%) translateZ(60px) scale(0.94);
-    top: 50%;
-    position: absolute;
-    left: 0;
-    width: 100%;
-    padding: 2rem;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-    outline: 1px solid transparent;
-    -webkit-perspective: inherit;
-            perspective: inherit;
-    z-index: 2;
-}
-
-.container .back{
-    -webkit-transform: rotateY(180deg);
-            transform: rotateY(180deg);
-    -webkit-transform-style: preserve-3d;
-            transform-style: preserve-3d;
-}
-
-.container .front{
-    -webkit-transform: rotateY(0deg);
-            transform: rotateY(0deg);
-    -webkit-transform-style: preserve-3d;
-            transform-style: preserve-3d;
-}
-
-.container:hover .back{
-  -webkit-transform: rotateY(0deg);
-          transform: rotateY(0deg);
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-}
-
-.container:hover .front{
-  -webkit-transform: rotateY(-180deg);
-          transform: rotateY(-180deg);
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-}
-
-.front .inner p{
-  font-size: 1.4rem;
-  margin-bottom: 2rem;
-  position: relative;
-}
-
-.front .inner p:after{
-  content: '';
-  width: 4rem;
-  height: 2px;
-  position: absolute;
-  background: #C6D4DF;
-  display: block;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  bottom: -.75rem;
-}
-
-.front .inner span{
-  color: rgba(255,255,255,0.7);
-  font-family: 'Montserrat';
+.header .hero-text__subs {
+  font-family: inherit;
+  font-size: 1.2em;
   font-weight: 300;
+  text-transform: capitalize;
+  color: #333333;
 }
 
-@media screen and (max-width: 64rem){
-  .col{
-    width: calc(33.333333% - 2rem);
+.header .hero-text__quote {
+    color: #6334ba;
+    font-weight: 600;
+}
+
+.header .hero-text__div{
+    margin: 2em 0;
+}
+
+.header .hero-text__btn {
+  padding: 1rem 2rem;
+  
+  font-family: inherit;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+  color: #ffffff;
+  background: #5c28bb;
+  border: none;
+  outline: none;
+  border-radius: 2px;
+  text-decoration: none;
+}
+.header .hero-image__main {
+  width: 100%;
+  height: auto;
+}
+
+.main .about {
+  background: #fafafa;
+  margin-top: 0rem;
+}
+.main .about .container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 3rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.5rem;
+}
+.main .about-image__main {
+  width: 80%;
+  height: auto;
+}
+.main .about-text__main {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: inherit;
+  text-transform: uppercase;
+  color: #5e25c9;
+}
+.main .about-text__subs {
+  font-family: 'Work Sans', sans-serif;;
+  font-size: 1.1rem;
+  font-weight: 400;
+  text-transform: capitalize;
+  color: #333333;
+  margin: 1rem 0 0 0;
+}
+.main .service {
+  margin-top: 2rem;
+}
+.main .service .container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+}
+.main .service .card {
+  padding: 2rem;
+  background: #ffffff;
+  color: #5e25c9;
+  border-radius: 2px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.main .service .card:hover {
+  padding: 2rem;
+  background: #5e25c9;
+  color: white;
+  border-radius: 2px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.main .service .card-image {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  flex-basis: auto;
+  justify-content: center;
+  align-items: center;
+}
+.main .service .card-image img {
+  max-height: 10rem;
+  height: 100%;
+  width: auto;
+}
+.main .service .card-text {
+  margin-top: 1.5rem;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.main .service .card-text__title {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: inherit;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.main .contact {
+  background: #fafafa;
+  margin-top: 2rem;
+}
+.main .contact .container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+}
+.main .contact-image img {
+  width: 80%;
+  height: auto;
+}
+.main .contact-form .contact-title {
+  font-family: inherit;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: inherit;
+  text-transform: uppercase;
+  color: #5e25c9;
+  margin-bottom: 1rem;
+}
+.main .contact-form .form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  flex-basis: auto;
+  width: 100%;
+  height: auto;
+}
+.main .contact-form .form-group {
+  width: 100%;
+  height: auto;
+}
+.main .contact-form .form-group:not(:last-child) {
+  margin-bottom: 1rem;
+}
+.main .contact-form .form-input {
+  padding: 1rem 0.75rem;
+  width: 100%;
+  height: auto;
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+.main .contact-form .form-textarea {
+  padding: 1rem 0.75rem;
+  width: 100%;
+  height: auto;
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+.main .contact-form .form-submit {
+  padding: 0.75rem 1.5rem;
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+  border: none;
+  color: #ffffff;
+  background: #5e25c9;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.footer {
+  padding: 2rem 0;
+  background: #333333;
+  color: #ffffff;
+}
+.footer .container {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  flex-basis: auto;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-menu__item {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  flex-basis: auto;
+}
+.footer-menu__link {
+  margin: 0 2rem 0 0;
+  font-family: inherit;
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+@media only screen and (max-width: 600px) {
+  .header .nav {
+    flex-direction: column;
+    justify-content: center;
   }
-}
-
-@media screen and (max-width: 48rem){
-  .col{
-    width: calc(50% - 2rem);
+  .header .hero {
+    grid-template-columns: 1fr;
+    justify-content: center;
+    margin-top: 5rem;
   }
-}
+  .header .hero-text {
+    order: 2;
+    font-size: 1.2rem;
+  }
 
-@media screen and (max-width: 32rem){
-  .col{
+  .main .about .container {
+    grid-template-columns: 1fr;
+    justify-content: center;
+  }
+  .main .about-image img {
     width: 100%;
-    margin: 0 0 2rem 0;
+    height: auto;
   }
-}
+  .main .service .container {
+    grid-template-columns: 1fr;
+    justify-content: center;
+  }
+  .main .contact .container {
+    grid-template-columns: 1fr;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  .main .contact-image img {
+    width: 100%;
+    height: auto;
+  }
 
-button {
-  background: none;
-  border: 2px solid;
-  font: inherit;
-  line-height: 1;
-  margin: 0.5em;
-  padding: 1em 2em;
-}
-
-h1 { font-weight: 400; }
-
-
-.slide:hover,
-.slide:focus {
-  box-shadow: inset 6.5em 0 0 0 var(--hover);
+  .footer .container {
+    flex-direction: column;
+    justify-content: center;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-menu__item {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    flex-basis: auto;
+    margin-bottom: 2rem;
+  }
+  .footer-menu__link {
+    margin: 0 1rem 0 1rem;
+    font-family: inherit;
+    font-size: 1rem;
+    color: #ffffff;
+  }
+  
 }
 
 </style>

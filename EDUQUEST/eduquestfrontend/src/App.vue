@@ -1,30 +1,48 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+  <div id="nav">
+    <NavbarComponent />
+  </div>  
   <router-view/>
 </template>
 
+<script>
+import { axios } from '@/common/api.service.js';
+import NavbarComponent from '@/components/Navbar.vue';
+export default {
+  name: "App",
+  components: {
+    NavbarComponent,
+  },
+
+  methods: {
+    async setUserInfo() {
+      try {
+        const endpoint = '/auth/users/me/';
+        if (endpoint) {
+          const response = await axios.get(endpoint);
+          const requestUser = response.data['username']
+          window.localStorage.setItem("username", requestUser);
+        } else {
+          console.log('AnonUser');
+        }
+      } catch (error) {
+        console.error(error.response);
+        alert(error.response.statusText);
+      }
+    },
+  },
+
+  created() {
+    this.setUserInfo();
+  }
+}
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
+  body {
+        font-family: "Noto Sans JP", sans-serif;
+        font-weight: 400;
+        background: linear-gradient(to bottom right, #f9f7f9, #f4f4f4);;
+      }
+      
 </style>

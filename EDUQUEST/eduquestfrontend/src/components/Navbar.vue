@@ -1,23 +1,24 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light my-navbar">
   <div class="container">
-    <router-link class="navbar-brand" :to="{name: 'home'}">
-      EDUQUEST
-    </router-link>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item me-3">
-          <button class="slide">
-            <a href="/accounts/logout/">Logout</a>
-          </button>
-        </li>
-      </ul>
-    </div>
+    
+    <nav class="nav">
+      <div class="nav-logo">
+          <a href="/" class="nav-logo__link" title="logo">
+              <i class="fa fa-cog fa-spin fa-fw"></i>  
+              EDU<span class="nav-logo__quest">QUEST</span>
+          </a>
+      </div>
+      <div class="nav-menu">
+        <ul class="nav-menu__item">
+          <li><a href="#" class="nav-menu__link">Home</a></li>
+          <li><a href="#" class="nav-menu__link">About</a></li>
+          <li><a href="#" class="nav-menu__link">Service</a></li>
+          <li><a href="#" class="nav-menu__link">Contact</a></li>
+          <li><a class="hero-text__btn" href="accounts/logout/">Take a Break</a></li>
+        </ul>
+      </div>
+    </nav>
   </div>
-</nav>
 </template>
 
 <script>
@@ -44,57 +45,87 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Smooch&display=swap');
-.my-navbar {
-  border-bottom: 1px solid #ddd;
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap');
+      * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+body {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1.4;
+  background: #ffffff;
+  color: #333333;
 }
 
-.navbar-brand {
-  font-weight: bold;
-  color: #66c887;
-  font-size: 3rem;
-  font-family: 'Cormorant Garamond', serif;
+.container {
+  padding: 0 1rem;
+  margin: 0 auto;
+  max-width: 80rem;
+  width: 100%;
 }
 
-.navbar-brand:hover {
-  color: #66c887 !important;
+.nav {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  flex-basis: auto;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 0;
+  margin: 0 auto;
+}
+.nav-logo {
+  font-family: 'Quicksand', sans-serif;
+  text-decoration: none;
+  color: black;
+  line-height: inherit;
+}
+.nav-logo__link {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #333333;
+  text-decoration: none;
+}
+.nav-logo__quest {
+    color: #5c28bb;
 }
 
-
-button {
-  color: #8fc866;
-  transition: 0.25s;
+.nav-menu__item {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  flex-basis: auto;
 }
-button:hover, button:focus {
-  border-color: #66c887;
-  color: #fff;
+.nav-menu__link {
+  margin: 0 2rem 0 0;
+  font-family: 'Quicksand', sans-serif;;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #333333;
+  text-decoration: none;
 }
-
-button {
-  background: none;
-  border: 2px solid;
-  font: inherit;
-  line-height: 1;
-  margin: 0.5em;
-  padding: 1em 2em;
-}
-
-h1 { font-weight: 400; }
-
-button a {
-  text-decoration: none !important;
-  color: #66c887;
+.nav-menu__link:hover {
+  color: #6334ba;
 }
 
-button a:hover {
-  text-decoration: none !important;
-  color:white;
-  z-index: 1;
-}
-
-.slide:hover,
-.slide:focus {
-  box-shadow: inset 11em 0 0 0 #66c887;
+.hero-text__btn {
+  padding: 1rem 2rem;
+  
+  font-family: inherit;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+  color: #ffffff;
+  background: #5c28bb;
+  border: none;
+  outline: none;
+  border-radius: 2px;
+  text-decoration: none;
 }
 </style>
