@@ -14,7 +14,14 @@
           <li><a href="#" class="nav-menu__link">About</a></li>
           <li><a href="#" class="nav-menu__link">Service</a></li>
           <li><a href="#" class="nav-menu__link">Contact</a></li>
-          <li><a class="hero-text__btn" href="accounts/logout/">Take a Break</a></li>
+          <li
+            v-if="requestUser"
+          >
+            <a class="hero-text__btn" href="accounts/login/">Take a break</a>
+          </li>
+          <li v-else>
+            <a class="hero-text__btn" href="accounts/logout/">Join Us</a>
+          </li>
         </ul>
       </div>
     </nav>
@@ -38,7 +45,6 @@ export default {
   methods: {
     setRequestUser() {
       this.requestUser = window.localStorage.getItem("username");
-      console.log(this.requestUser);
     },
   }
 };

@@ -18,12 +18,15 @@ export default {
     async setUserInfo() {
       try {
         const endpoint = '/auth/users/me/';
-        if (endpoint) {
-          const response = await axios.get(endpoint);
-          const requestUser = response.data['username']
-          window.localStorage.setItem("username", requestUser);
-        } else {
-          console.log('AnonUser');
+        try {
+            const response = await axios.get(endpoint);
+            
+            const requestUser = response.data['username']
+            window.localStorage.setItem("username", requestUser);
+
+          } catch (error) {
+            const requestUser = 'AnonUser';
+            window.localStorage.setItem("username", requestUser);
         }
       } catch (error) {
         console.error(error.response);

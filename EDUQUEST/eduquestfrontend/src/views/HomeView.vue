@@ -14,7 +14,7 @@
           <span class="hero-text__quote"> - John F. Kennedy </span>
         </p>
         <div class="hero-text__div">
-          <a class="hero-text__btn" href="categories">Come On In</a>
+          <a class="hero-text__btn" href="categories">Discover</a>
         </div>
       </div>
       <div class="hero-image">

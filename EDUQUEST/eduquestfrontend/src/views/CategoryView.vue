@@ -88,6 +88,14 @@
           <h4>Load more questions</h4>
         </button>
     </div>
+    <div 
+        v-if="error" 
+        class="error-message"
+    >
+        <p>
+            You are not allowed to create a new category without signing in
+        </p>
+    </div>
   </div>
 </template>
 
@@ -102,16 +110,16 @@ export default {
       categories: [],
       next: null,
       loadingCategories: false,
+      error: null,
     }
   },
 
   created() {
-    this.getQuestions();
-    console.log(this.categories);
+    this.getCategories();
   },
 
   methods: {
-    async getQuestions() {
+    async getCategories() {
       let endpoint = '/api/v1/categories/';
       if (this.next) {
         endpoint = this.next;
@@ -119,7 +127,6 @@ export default {
       this.loadingCategories = true;
       try {
         const response = await axios.get(endpoint);
-        console.log(response);
         this.categories.push(...response.data.results);
         this.loadingCategories = false;
         if (response.data.next){
