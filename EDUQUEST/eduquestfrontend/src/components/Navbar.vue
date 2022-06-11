@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     
-    <nav class="nav">
+    <nav class="nav navbar fixed-top navbar-light bg-light">
       <div class="nav-logo">
           <a href="/" class="nav-logo__link" title="logo">
               <i class="fa fa-cog fa-spin fa-fw"></i>  
@@ -10,10 +10,14 @@
       </div>
       <div class="nav-menu">
         <ul class="nav-menu__item">
-          <li><a href="#" class="nav-menu__link">Home</a></li>
+          <li><a href="#" class="nav-menu__link">Hello {{requestUser}}</a></li>
           <li><a href="#" class="nav-menu__link">About</a></li>
           <li><a href="#" class="nav-menu__link">Service</a></li>
           <li><a href="#" class="nav-menu__link">Contact</a></li>
+        </ul>
+      </div>
+      <div class="nav-menu">
+        <ul class="nav-menu__item">
           <li
             v-if="requestUser"
           >
@@ -83,8 +87,8 @@ body {
   flex-basis: auto;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 0;
-  margin: 0 auto;
+  padding: .4rem 0;
+  margin:1rem;
 }
 .nav-logo {
   font-family: 'Quicksand', sans-serif;
@@ -95,11 +99,11 @@ body {
 .nav-logo__link {
   font-size: 1.9rem;
   font-weight: 700;
-  color: #333333;
+  color: #3a041c;
   text-decoration: none;
 }
 .nav-logo__quest {
-    color: #5c28bb;
+    color: #D90C66;
 }
 
 .nav-menu__item {
@@ -113,7 +117,7 @@ body {
   font-family: 'Quicksand', sans-serif;;
   font-size: 1.3rem;
   font-weight: 500;
-  color: #333333;
+  color: #43041e;
   text-decoration: none;
 }
 .nav-menu__link:hover {
@@ -122,16 +126,22 @@ body {
 
 .hero-text__btn {
   padding: 1rem 2rem;
-  
+  border-radius: 5px;
   font-family: inherit;
   font-size: 1.2rem;
   font-weight: 500;
   text-align: center;
   color: #ffffff;
-  background: #5c28bb;
+  background: #D90C66;
   border: none;
   outline: none;
   border-radius: 2px;
   text-decoration: none;
 }
+
+.hero-text__btn:hover {
+  background: #003049;
+  color: #ffffff;
+}
+
 </style>

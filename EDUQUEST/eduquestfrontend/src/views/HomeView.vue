@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="hero-image">
-        <img class="hero-image__main" src="https://bit.ly/2pzDwgc" alt="Images">
+        <img class="hero-image__main" :src="image" alt="Images">
       </div>
     </div>
   </div>
@@ -26,12 +26,13 @@
     <section class="about">
       <div class="container">
         <div class="about-image">
-          <img class="about-image__main" src="https://bit.ly/2D7MxjT" alt="Images">
+          <img class="about-image__main" src="../assets/Learning-rafiki.png" alt="Images">
         </div>
         <div class="about-text">
-          <h1 class="about-text__main">Knowledge is power. Knowledge shared is power multiplied..</h1>
+          <h1 class="about-text__main"><span class="nav-logo__quest">Knowledge</span> is power. 
+          <span class="nav-logo__quest">Knowledge</span> shared is power multiplied..</h1>
           <p class="about-text__subs">
-              Knowledge is power. Information is liberating. 
+              Information is liberating. 
               Education is the premise of progress, in every society, in every family.
             </p>
             <p class="about-text__subs">The beautiful thing about learning is nobody can take it away from you.
@@ -45,7 +46,7 @@
       <div class="container">
         <div class="card card-1">
           <div class="card-image">
-            <img src="https://bit.ly/37hmX9N" alt="Images">
+            <img src="../assets/Curious-cuate.png" alt="Images">
           </div>
           <div class="card-text">
             <h2 class="card-text__title">ANYWHERE IN THE WORLD</h2>
@@ -56,22 +57,21 @@
         </div>
         <div class="card card-2">
           <div class="card-image">
-            <img src="https://bit.ly/2Xx6MAH" alt="Images">
+            <img src="../assets/Online-learning-rafiki.png" alt="Images">
           </div>
           <div class="card-text">
-            <h2 class="card-text__title">SHARE YOUR KNOWLEDGE</h2>
-            <p class="card-text__subs">If you have knowledge, let others light their candles in it.
-              For shared knowledge is a beneficial one.
+            <h2 class="card-text__title">SHARE YOUR <span class="nav-logo__quest">KNOWLEDGE</span></h2>
+            <p class="card-text__subs">If you have <span class="nav-logo__quest">knowledge</span>, let others light their candles in it.
             </p>
           </div>
         </div>
         <div class="card card-3">
           <div class="card-image">
-            <img src="https://bit.ly/2O0Ftf9" alt="Images">
+            <img src="../assets/Curious-pana.png" alt="Images">
           </div>
           <div class="card-text">
             <h2 class="card-text__title">DEBATE ETHICALLY</h2>
-            <p class="card-text__subs">Knowledge when put to use - 
+            <p class="card-text__subs"><span class="nav-logo__quest">Knowledge</span> when put to use - 
                 only when the use made of it is constructive.
             </p>
           </div>
@@ -81,7 +81,7 @@
     <section class="contact">
       <div class="container">
         <div class="contact-image">
-          <img src="https://bit.ly/32Y3o34" alt="Images">
+          <img src="../assets/Mention-rafiki.png" alt="Images">
         </div>
         <div class="contact-form">
           <h2 class="contact-title">Contact Us Now.</h2>
@@ -107,8 +107,15 @@
 </template>
 
 <script>
+import image from "../assets/Learning-amico.png"
 export default {
   name: "HomeView",
+
+  data() {
+    return {
+      image: image,
+    }
+  }
 }
 </script>
 
@@ -145,7 +152,7 @@ body {
 }
 .header .nav-menu__link {
   margin: 0 2rem 0 0;
-  font-family: 'Quicksand', sans-serif;;
+  font-family: 'Quicksand', sans-serif;
   font-size: 1.3rem;
   font-weight: 500;
   color: #333333;
@@ -179,7 +186,7 @@ body {
 }
 
 .header .hero-text__quote {
-    color: #6334ba;
+    color: #D90C66;
     font-weight: 600;
 }
 
@@ -195,7 +202,7 @@ body {
   font-weight: 500;
   text-align: center;
   color: #ffffff;
-  background: #5c28bb;
+  background: #003049;
   border: none;
   outline: none;
   border-radius: 2px;
@@ -228,14 +235,14 @@ body {
   font-weight: 700;
   line-height: inherit;
   text-transform: uppercase;
-  color: #5e25c9;
+  color: #003049;
 }
 .main .about-text__subs {
   font-family: 'Work Sans', sans-serif;;
   font-size: 1.1rem;
   font-weight: 400;
   text-transform: capitalize;
-  color: #333333;
+  color: #003049;
   margin: 1rem 0 0 0;
 }
 .main .service {
@@ -244,25 +251,30 @@ body {
 .main .service .container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 2rem;
+  grid-gap: 3rem;
   justify-content: center;
   align-items: center;
-  padding: 1.5rem;
+  padding: 2.5rem 0;
 }
 .main .service .card {
   padding: 2rem;
   background: #ffffff;
-  color: #5e25c9;
+  color: #003049;
   border-radius: 2px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
+.main .service .card-1,
+.main .service .card-2,
+.main .service .card-3 {
+  border-radius: 20px;
+}
+
+
 .main .service .card:hover {
-  padding: 2rem;
-  background: #5e25c9;
+  background: #D90C66;
   color: white;
-  border-radius: 2px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 20px;
 }
 
 .main .service .card-image {
@@ -314,7 +326,7 @@ body {
   font-weight: 700;
   line-height: inherit;
   text-transform: uppercase;
-  color: #5e25c9;
+  color: #D90C66;
   margin-bottom: 1rem;
 }
 .main .contact-form .form {
@@ -361,7 +373,7 @@ body {
   outline: none;
   border: none;
   color: #ffffff;
-  background: #5e25c9;
+  background: #7e073d;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 

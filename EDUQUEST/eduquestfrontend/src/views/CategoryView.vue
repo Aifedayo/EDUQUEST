@@ -6,7 +6,7 @@
                 :key="category.pk"
       >
         <div class="wrapper">
-          <div class="cols">
+          <div class="cols my-5">
               <div class="col" ontouchstart="this.classList.toggle('hover');">
                   <div v-if="category.count > 0">
                     <router-link :to="{ name: 'question-list', params: {slug: category.slug} }"
@@ -59,7 +59,7 @@
         :to="{ name: 'category-editor' }"
       >
         <div class="wrapper">
-          <div class="cols">
+          <div class="cols my-5">
               <div class="col" ontouchstart="this.classList.toggle('hover');">
                 <div class="container">
                   <div class="front">
