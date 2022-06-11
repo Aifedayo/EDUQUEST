@@ -9,7 +9,7 @@
           </a>
       </div>
       <div class="nav-menu">
-        <ul class="nav-menu__item">
+        <ul class="nav-menu__item menu-selection">
           <li><a href="#" class="nav-menu__link">Hello {{requestUser}}</a></li>
           <li><a href="#" class="nav-menu__link">About</a></li>
           <li><a href="#" class="nav-menu__link">Service</a></li>
@@ -88,7 +88,6 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: .4rem 0;
-  margin:1rem;
 }
 .nav-logo {
   font-family: 'Quicksand', sans-serif;
@@ -106,6 +105,11 @@ body {
     color: #D90C66;
 }
 
+.nav-logo__link:hover {
+  text-decoration: none;
+  color: #3a041c;
+}
+
 .nav-menu__item {
   display: flex;
   flex-direction: row;
@@ -117,16 +121,18 @@ body {
   font-family: 'Quicksand', sans-serif;;
   font-size: 1.3rem;
   font-weight: 500;
-  color: #43041e;
+  color: #003049;
   text-decoration: none;
 }
-.nav-menu__link:hover {
-  color: #6334ba;
+
+.menu-selection {
+  background: #e00d6808;
+  padding: .9rem;
+  border-radius: 10px;
 }
 
 .hero-text__btn {
-  padding: 1rem 2rem;
-  border-radius: 5px;
+  padding: .8rem 1rem;
   font-family: inherit;
   font-size: 1.2rem;
   font-weight: 500;
@@ -135,7 +141,8 @@ body {
   background: #D90C66;
   border: none;
   outline: none;
-  border-radius: 2px;
+  border-radius: 10px;
+  margin-right: 10px;
   text-decoration: none;
 }
 

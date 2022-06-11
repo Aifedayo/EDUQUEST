@@ -60,8 +60,8 @@
             <img src="../assets/Online-learning-rafiki.png" alt="Images">
           </div>
           <div class="card-text">
-            <h2 class="card-text__title">SHARE YOUR <span class="nav-logo__quest">KNOWLEDGE</span></h2>
-            <p class="card-text__subs">If you have <span class="nav-logo__quest">knowledge</span>, let others light their candles in it.
+            <h2 class="card-text__title">SHARE YOUR KNOWLEDGE</h2>
+            <p class="card-text__subs">If you have knowledge, let others light their candles in it.
             </p>
           </div>
         </div>
@@ -71,7 +71,7 @@
           </div>
           <div class="card-text">
             <h2 class="card-text__title">DEBATE ETHICALLY</h2>
-            <p class="card-text__subs"><span class="nav-logo__quest">Knowledge</span> when put to use - 
+            <p class="card-text__subs">Knowledge when put to use - 
                 only when the use made of it is constructive.
             </p>
           </div>
@@ -144,6 +144,11 @@ body {
   max-width: 80rem;
   width: 100%;
 }
+
+.header {
+  margin-top: 5em;
+}
+
 .header .nav-menu__item {
   display: flex;
   flex-direction: row;
@@ -205,9 +210,13 @@ body {
   background: #003049;
   border: none;
   outline: none;
-  border-radius: 2px;
+  border-radius: 10px;
   text-decoration: none;
 }
+.header .hero-text__btn:hover {
+  background-color: #D90C66;
+}
+
 .header .hero-image__main {
   width: 100%;
   height: auto;
