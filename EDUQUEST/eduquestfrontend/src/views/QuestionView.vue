@@ -1,40 +1,42 @@
 <template>
-  <div class="home mt-2">
-    <div class="container">
+  <div class="container">
+    <router-link
+        :to="{name: 'question-editor', params: {slug: slug} }"
+        class="mb-3"
+      >
+      <button class="btn btn-primary">Ask a Question</button>
+      </router-link>
+    <div class="row row-cols-2">
         <div v-for="question in questions"
                 :key="question.uuid"
         >
-
-            <section class="dark">
-                <div class="container py-4">
-                    <router-link :to="{ name: 'question', params: {slug: question.slug} }"
-                      class="question-link"
-                    >
-                        <article class="postcard dark blue">
-                            <a class="postcard__img_link" href="#">
-                                <img class="postcard__img" src="https://picsum.photos/1000/1000" alt="Image Title" />
-                            </a>
-                            <div class="postcard__text">
-                                <h1 class="postcard__title blue"><a href="#"> {{ question.title }}</a></h1>
-                                <div class="postcard__subtitle small">
-                                    <time datetime="2020-05-25 12:00:00">
-                                        <i class="fas fa-calendar-alt mr-2"></i>{{ question.created_at }}
-                                    </time>
-                                </div>
-                                <div class="postcard__bar"></div>
-                                <div class="postcard__preview-txt">{{ question.content }}</div>
-                                <ul class="postcard__tagbox">
-                                    <li class="tag__item"><i class="fas fa-tag mr-2"></i>{{ question.category }}</li>
-                                    <li class="tag__item"><i class="fas fa-clock mr-2"></i>55 mins.</li>
-                                    <li class="tag__item play blue">
-                                        <a href="#"><i class="fas fa-play mr-2"></i>{{ question.updated_at }}</a>
-                                    </li>
-                                </ul>
+          <section class="col">
+            <div class="field">
+                <router-link :to="{ name: 'question', params: {slug: question.slug} }"
+                  class="question-link"
+                >
+                    <article class="postcard dark blue">
+                        <div class="postcard__text">
+                            <h1 class="postcard__title blue"><a href="#"> {{ question.title }}</a></h1>
+                            <div class="postcard__subtitle small">
+                                <time datetime="2020-05-25 12:00:00">
+                                    <i class="fa fa-calendar-alt mr-2"></i>{{ question.created_at }}
+                                </time>
                             </div>
-                        </article>
-                    </router-link>
-                </div>
-            </section>
+                            <div class="postcard__bar"></div>
+                            <div class="postcard__preview-txt">{{ question.content }}</div>
+                            <ul class="postcard__tagbox">
+                                <li class="tag__item"><i class="fa fa-tag mr-2"></i> {{ question.category.slug }}</li>
+                                <li class="tag__item"><i class="fa fa-clock mr-2"></i> 55 mins.</li>
+                                <li class="tag__item play blue">
+                                    <a href="#"><i class="fas fa-clock mr-2"></i> {{ question.updated_at }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                </router-link>
+            </div>
+          </section>
         </div>
         <div class="my-4">
             <p v-show="loadingQuestions">...loading...</p>
@@ -101,23 +103,6 @@ export default {
 
 <style scoped>
 
-  .question-author {
-    font-weight: bold;
-    color: rgb(244, 103, 103);
-  }
-
-  .question-link {
-    text-decoration: none;
-    color: black;
-    font-weight: 400;
-  }
-
-  .question-link:hover {
-    text-decoration: none;
-    color: rgb(63, 61, 61);
-    font-weight: 400;
-  }
-
   @import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
 /* This pen */
 body {
@@ -128,26 +113,19 @@ body {
   font-weight: initial;
 }
 
-
 a, a:hover {
   text-decoration: none;
   transition: color 0.3s ease-in-out;
-}
-
-#pageHeaderTitle {
-  margin: 2rem 0;
-  text-transform: uppercase;
-  text-align: center;
-  font-size: 2.5rem;
 }
 
 /* Cards */
 .postcard {
   flex-wrap: wrap;
   display: flex;
+  padding: 10px;
   box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
   border-radius: 10px;
-  margin: 0 0 2rem 0;
+  margin: 0 0 1rem 0;
   overflow: hidden;
   position: relative;
   color: #ffffff;
@@ -193,7 +171,6 @@ a, a:hover {
   transition: width 0.2s ease;
 }
 .postcard .postcard__text {
-  padding: 1.5rem;
   position: relative;
   display: flex;
   flex-direction: column;

@@ -1,12 +1,12 @@
 <template>
   <div class="home m-5">
     <!-- testing template here -->
-    <div class="row row-cols-4 g-4">
+    <div class="row row-cols-4 g-3">
       <div v-for="category in categories"
                 :key="category.pk"
       >
         <div class="wrapper">
-          <div class="cols my-5">
+          <div class="cols">
               <div class="col" ontouchstart="this.classList.toggle('hover');">
                   <div v-if="category.count > 0">
                     <router-link :to="{ name: 'question-list', params: {slug: category.slug} }"
@@ -14,9 +14,8 @@
                       >
                         <div class="container">
                           <div class="front">
-                            <div class="badge-count">{{ category.count }}</div>
-                            
                             <div class="inner">
+                              <div class="badge-count">{{ category.count }}</div>
                               <p>{{ category.name }}</p>
                               <span> author: {{ category.author }}</span>
                             </div>
@@ -59,7 +58,7 @@
         :to="{ name: 'category-editor' }"
       >
         <div class="wrapper">
-          <div class="cols my-5">
+          <div class="cols ">
               <div class="col" ontouchstart="this.classList.toggle('hover');">
                 <div class="container">
                   <div class="front">
@@ -70,7 +69,7 @@
                   </div>
                   <div class="back" style="background: #160606;">
                     <div class="inner">
-                      <p style="font-size: 2em">+</p>
+                      <p style="font-size: 1.5em">+</p>
                       <p>Add a new category that you can't find on the list</p>
                     </div>
                   </div>
@@ -194,7 +193,7 @@ h1{
 .back{
   background-size: cover;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.25);
-  border-radius: 10px;
+  border-radius: 40px;
 	background-position: center;
 	-webkit-transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
 	transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
@@ -205,9 +204,8 @@ h1{
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 	text-align: center;
-	min-height: 280px;
+	min-height: 150px;
 	height: auto;
-	border-radius: 10px;
 	color: #fff;
 	font-size: 1rem;
 }
@@ -228,10 +226,10 @@ h1{
     height: 100%;
     content: '';
     display: block;
-    background-image: linear-gradient(to bottom right, #1c2726, #10100f);
+    background-image: linear-gradient(to bottom right, #001a28, #050405);
     -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
-    border-radius: 10px;
+    border-radius: 30px;
 }
 .container:hover .front,
 .container:hover .back{
