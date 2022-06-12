@@ -1,20 +1,32 @@
 <template>
   <div class="container">
     
-    <nav class="nav navbar-expand-lg fixed-top navbar-light bg-light">
+    <nav class="nav navbar navbar-expand-lg fixed-top navbar-light bg-light">
       <div class="nav-logo">
           <a href="/" class="nav-logo__link" title="logo">
               <i class="fa fa-cog fa-spin fa-fw"></i>  
               EDU<span class="nav-logo__quest">QUEST</span>
           </a>
       </div>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+          data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+           aria-expanded="false" aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="nav-menu__item menu-selection">
+      <div class="menu-selection collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="nav-menu__item">
           <li><a href="#" class="nav-menu__link">Hello {{requestUser}}</a></li>
-          <li><a href="categories" class="nav-menu__link">Categories</a></li>
+          <li class="nav-item dropdown">
+          <a class="dropdown-toggle nav-menu__link" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Categories
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
           <li><a href="#" class="nav-menu__link">Service</a></li>
           <li><a href="#" class="nav-menu__link">Contact</a></li>
         </ul>
@@ -98,11 +110,18 @@ body {
   color: black;
   line-height: inherit;
 }
+.menu-selection {
+  background: #e00d6808;
+  padding: .6rem;
+  border-radius: 10px;
+}
 .nav-logo__link {
   font-size: 1.9rem;
   font-weight: 700;
   color: #3a041c;
+  margin-right: 5rem;
   text-decoration: none;
+  text-align: center;
 }
 .nav-logo__quest {
     color: #D90C66;
@@ -128,12 +147,6 @@ body {
   text-decoration: none;
 }
 
-.menu-selection {
-  background: #e00d6808;
-  padding: .9rem;
-  border-radius: 10px;
-}
-
 .hero-text__btn {
   padding: .8rem 1rem;
   font-family: inherit;
@@ -145,7 +158,7 @@ body {
   border: none;
   outline: none;
   border-radius: 10px;
-  margin-right: 10px;
+  margin:auto 2rem;
   text-decoration: none;
 }
 
