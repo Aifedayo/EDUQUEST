@@ -1,17 +1,20 @@
 <template>
   <div class="container">
     
-    <nav class="nav navbar fixed-top navbar-light bg-light">
+    <nav class="nav navbar-expand-lg fixed-top navbar-light bg-light">
       <div class="nav-logo">
           <a href="/" class="nav-logo__link" title="logo">
               <i class="fa fa-cog fa-spin fa-fw"></i>  
               EDU<span class="nav-logo__quest">QUEST</span>
           </a>
       </div>
-      <div class="nav-menu">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="nav-menu__item menu-selection">
           <li><a href="#" class="nav-menu__link">Hello {{requestUser}}</a></li>
-          <li><a href="#" class="nav-menu__link">About</a></li>
+          <li><a href="categories" class="nav-menu__link">Categories</a></li>
           <li><a href="#" class="nav-menu__link">Service</a></li>
           <li><a href="#" class="nav-menu__link">Contact</a></li>
         </ul>
@@ -75,7 +78,7 @@ body {
 
 .container {
   padding: 0 1rem;
-  margin: 0 auto;
+  margin-bottom: 7em;
   max-width: 80rem;
   width: 100%;
 }

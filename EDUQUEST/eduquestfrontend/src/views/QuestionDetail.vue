@@ -127,7 +127,7 @@ export default {
         },
 
         async getQuestionAnswers() {
-            let endpoint = `/api/v1/questions/${this.slug}/answers/`;
+            let endpoint = `/api/v1/question/${this.slug}/answers/`;
             if (this.next) {
                 endpoint = this.next;
             }
@@ -152,7 +152,7 @@ export default {
                 this.error = "You can't send an empty answer!"
                 return
             }
-            const endpoint = `/api/v1/questions/${this.slug}/answer/`;
+            const endpoint = `/api/v1/question/${this.slug}/answer/`;
             try {
                 const response = await axios.post(endpoint, {
                     body: this.newAnswerBody,
