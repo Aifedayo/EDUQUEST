@@ -2,9 +2,8 @@
   <div class="container">
     <router-link
         :to="{name: 'question-editor', params: {slug: slug} }"
-        class="mb-3"
       >
-      <button class="btn btn-primary">Ask a Question</button>
+      <button class="hero-text__btn btn-primary mb-4">Ask a Question</button>
       </router-link>
     <div class="row row-cols-2">
         <div v-for="question in questions"
@@ -26,11 +25,24 @@
                             <div class="postcard__bar"></div>
                             <div class="postcard__preview-txt">{{ question.content }}</div>
                             <ul class="postcard__tagbox">
-                                <li class="tag__item"><i class="fa fa-tag mr-2"></i> {{ question.category.slug }}</li>
+                                <li class="tag__item"><i class="fa fa-tag mr-2"></i> {{ question.category }}</li>
                                 <li class="tag__item"><i class="fa fa-clock mr-2"></i> 55 mins.</li>
                                 <li class="tag__item play blue">
                                     <a href="#"><i class="fas fa-clock mr-2"></i> {{ question.updated_at }}</a>
                                 </li>
+                                <li v-if="isQuestionAuthor"
+                                  class="tag__item delete"
+                                  @click="showDeleteModal = !showDeleteModal"
+                                >
+                                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </li>
+                                  <button 
+                                    v-show="showDeleteModal"
+                                    class="btn btn-danger"
+                                    @click="deleteQuestion(question)"
+                                  >
+                                    Yes, delete!!!
+                                  </button>
                             </ul>
                         </div>
                     </article>
@@ -69,14 +81,21 @@ export default {
         questions: [],
         next: null,
         loadingQuestions: false,
+        showDeleteModal: false,
         }
     },
 
+
   created() {
     this.getQuestions();
+    this.setRequestUser();
   },
 
   methods: {
+    setRequestUser() {
+      this.requestUser = window.localStorage.getItem("username");
+    },
+
     async getQuestions() {
       let endpoint = `/api/v1/categories/${this.slug}/questions/`;
       if (this.next) {
@@ -95,6 +114,17 @@ export default {
       } catch (error) {
         console.error(error.response);
         alert(error.response.statusText);
+      }
+    },
+
+    async deleteQuestion(question) {
+      const endpoint = `/api/v1/question/${question.slug}/`;
+
+      try {
+        await axios.delete(endpoint);
+        this.$router.push({name: 'question-list'})
+      } catch (error) {
+        console.error(error);
       }
     }
   }
@@ -195,7 +225,7 @@ a, a:hover {
   border-radius: 3px;
   padding: 2.5px 10px;
   margin: 0 5px 5px 0;
-  cursor: default;
+  cursor: pointer;
   user-select: none;
   transition: background-color 0.3s;
 }
